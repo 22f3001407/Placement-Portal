@@ -1,0 +1,33 @@
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
+
+class StudentProfile(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('profile_user.id'), unique=True, nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    roll_no = db.Column(db.String(50), unique=True, nullable=False)
+    branch = db.Column(db.String(50), nullable=False)
+    cgpa = db.Column(db.Float)
+    passing_year = db.Column(db.Integer, nullable=False)
+
+
+class CompanyProfile(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('profile_user.id'), unique=True, nullable=False)
+    company_name = db.Column(db.String(120), nullable=False)
+    hr_email = db.Column(db.String(120), nullable=False)
+    approved = db.Column(db.Boolean, default=False)
+
+
+class JobPost(db.Model):
+    
+    id = db.Column(db.Integer, primary_key=True)
+    company_id = db.Column(db.Integer, db.ForeignKey('company_profile.id'), nullable=False)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text)
+    min_cgpa = db.Column(db.Float)
+    package = db.Column(db.Float)
