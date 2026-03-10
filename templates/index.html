@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container text-center mt-4">
+
+<!-- ===== HERO SECTION ===== -->
+<div class="mb-5">
+
+    <h1 class="fw-bold display-4">Placement Portal</h1>
+
+    <p class="text-muted fs-5">
+        Connecting Students & Companies
+    </p>
+
+    <a href="/login" class="btn btn-warning btn-lg px-5 py-2 mt-3 fw-bold">
+        Start Your Journey
+    </a>
+
+</div>
+
+
+
+<!-- ===== FEATURE SECTION ===== -->
+<div class="row g-4 mb-5 justify-content-center">
+
+    <!-- STUDENT CARD -->
+    <div class="col-md-5">
+
+        <div class="card shadow-sm border-0 p-4 h-100 text-center">
+
+            <h3 class="fw-bold">For Students</h3>
+
+            <p class="text-muted">
+                Create your profile, explore available jobs,
+                apply for placement drives and track your applications.
+            </p>
+
+            <a href="/register" class="btn btn-primary mt-3">
+                Register as Student
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- COMPANY CARD -->
+    <div class="col-md-5">
+
+        <div class="card shadow-sm border-0 p-4 h-100 text-center">
+
+            <h3 class="fw-bold">For Companies</h3>
+
+            <p class="text-muted">
+                Register your company, post placement drives,
+                review student applications and hire talented candidates.
+            </p>
+
+            <a href="/register" class="btn btn-dark mt-3">
+                Register as Company
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ===== HOW IT WORKS ===== -->
+<div class="mb-4">
+
+    <h2 class="fw-bold mb-4">How It Works</h2>
+
+    <div class="row g-4 justify-content-center">
+
+        <!-- STEP 1 -->
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm p-4 h-100 text-center">
+
+                <h6 class="text-warning fw-bold">STEP 1</h6>
+                <h5 class="fw-bold">Create Account</h5>
+
+                <p class="text-muted small">
+                    Register as a Student or Company to access the portal.
+                </p>
+
+            </div>
+        </div>
+
+
+        <!-- STEP 2 -->
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm p-4 h-100 text-center">
+
+                <h6 class="text-warning fw-bold">STEP 2</h6>
+                <h5 class="fw-bold">Complete Profile</h5>
+
+                <p class="text-muted small">
+                    Students add skills and education while companies add details.
+                </p>
+
+            </div>
+        </div>
+
+
+        <!-- STEP 3 -->
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm p-4 h-100 text-center">
+
+                <h6 class="text-warning fw-bold">STEP 3</h6>
+                <h5 class="fw-bold">Apply / Hire</h5>
+
+                <p class="text-muted small">
+                    Students apply for jobs and companies review applications.
+                </p>
+
+            </div>
+        </div>
+
+
+        <!-- STEP 4 -->
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm p-4 h-100 text-center">
+
+                <h6 class="text-warning fw-bold">STEP 4</h6>
+                <h5 class="fw-bold">Get Placed</h5>
+
+                <p class="text-muted small">
+                    Track application status until the final placement decision.
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

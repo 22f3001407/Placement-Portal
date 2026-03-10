@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page">
+  <div class="login-card" style="width:500px;">
+      <h2>Pending Companies</h2>
+
+      {% for company in companies %}
+          <p>
+              <b>{{ company.name }}</b> - {{ company.email }}
+
+              <a href="/approve_company/{{ company.id }}">
+                  <button>Approve</button>
+              </a>
+          </p>
+          <hr>
+      {% endfor %}
+
+      {% if not companies %}
+         <p>No companies pending approval</p>
+      {% endif %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5" style="max-width:1100px;">
+
+    <div class="card shadow-sm border-0 p-4 rounded-4">
+
+        <h3 class="fw-bold mb-3">All Students</h3>
+
+        <!-- SEARCH BAR -->
+        <form method="GET" action="/admin_students" class="mb-3">
+            <input type="text"
+                    name="query"
+                    placeholder="Search student by name..."
+                    class="form-control">
+        </form>
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>College</th>
+                    <th>Branch</th>
+                    <th>CGPA</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            {% for s in students %}
+            <tr>
+                <td>{{ s.name }}</td>
+                <td>{{ s.college_name }}</td>
+                <td>{{ s.branch }}</td>
+                <td>{{ s.cgpa }}</td>
+
+                <!-- Status -->
+                <td>
+                    {% if s.is_blacklisted %}
+                        <span class="badge bg-danger">Blacklisted</span>
+                    {% else %}
+                        <span class="badge bg-success">Active</span>
+                    {% endif %}
+                </td>
+
+                <!-- Action -->
+                <td>
+                    <a href="/toggle_blacklist_student/{{ s.id }}"
+                       class="btn btn-sm 
+                       {% if s.is_blacklisted %}
+                           btn-success
+                       {% else %}
+                           btn-danger
+                       {% endif %}">
+                        {% if s.is_blacklisted %}
+                            Unblacklist
+                        {% else %}
+                            Blacklist
+                        {% endif %}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

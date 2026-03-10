@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4" style="max-width:1100px;">
+
+    <div class="card shadow-sm border-0 p-4">
+
+        <h3 class="fw-bold mb-3">Available Jobs</h3>
+
+        <form method="GET" action="/available_jobs" class="mb-3">
+            <input type="text"
+                name="query"
+                placeholder="Search jobs by role or skill..."
+                class="form-control">
+        </form>
+
+        <table class="table table-hover">
+
+            <thead>
+                <tr>
+                    <th>Job</th>
+                    <th>Company</th>
+                    <th>Salary</th>
+                    <th>Deadline</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            {% for job in jobs %}
+            <tr>
+                <td>{{ job.role }}</td>
+                <td>{{ job.company.company_name }}</td>
+                <td>{{ job.salary }}</td>
+                <td>{{ job.deadline.strftime('%d %b %Y') }}</td>
+                
+
+                <td>
+                    {% if job.id in applied_job_ids %}
+                        <span class="badge bg-success">
+                            Applied ✔
+                        </span>
+                    {% else %}
+                        <form action="{{ url_for('apply_job', job_id=job.id) }}"
+                              method="POST"
+                              style="display:inline;">
+
+                            <button type="submit"
+                                    class="btn btn-sm btn-primary">
+                                Apply
+                            </button>
+
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+
+            {% else %}
+            <tr>
+                <td colspan="4" class="text-center text-muted">
+                    No jobs available
+                </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

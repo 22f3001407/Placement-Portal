@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4" style="max-width:1000px;">
+
+    <div class="card shadow-sm border-0 p-4">
+
+        <h3 class="fw-bold mb-3">Manage Jobs</h3>
+
+        <table class="table table-hover">
+
+            <thead>
+                <tr>
+                    <th>Role</th>
+                    <th>Skills</th>
+                    <th>Experience</th>
+                    <th>Salary</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for job in jobs %}
+                <tr>
+                    <td>{{ job.role }}</td>
+                    <td>{{ job.skills }}</td>
+                    <td>{{ job.experience }}</td>
+                    <td>{{ job.salary }}</td>
+
+                    <td>
+                        {{ job.deadline.strftime('%d %b %Y') }}
+                    </td>
+
+                    <td>
+                        {% if job.status == "Approved" %}
+                            <span class="badge bg-success">Approved</span>
+                        {% elif job.status == "Rejected" %}
+                            <span class="badge bg-danger">Rejected</span>
+                        {% elif job.status == "Closed" %}
+                            <span class="badge bg-secondary">Closed</span>
+                        {% else %}
+                            <span class="badge bg-warning">Pending</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        <a href="/edit_job/{{ job.id }}"
+                           class="btn btn-sm btn-warning">
+                           Edit
+                        </a>
+
+                        <a href="/delete_job/{{ job.id }}"
+                           class="btn btn-sm btn-danger">
+                           Delete
+                        </a>
+
+                        <a href="/close_job/{{ job.id }}"
+                           class="btn btn-sm btn-secondary">
+                           Close
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

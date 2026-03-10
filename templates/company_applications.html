@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4" style="max-width:1200px;">
+
+    <div class="card shadow-sm border-0 p-4">
+
+        <h3 class="fw-bold mb-4">Applications Received</h3>
+
+        <div class="table-responsive">
+
+        <table class="table table-hover table-bordered align-middle">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>Student Name</th>
+                    <th>College</th>
+                    <th>CGPA</th>
+                    <th>Skills</th>
+                    <th>Resume</th>
+                    <th>Applied On</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for app in applications %}
+                <tr>
+
+                    <td>{{ app.student.user.name }}</td>
+                    <td>{{ app.student.college_name }}</td>
+                    <td>{{ app.student.cgpa }}</td>
+                    <td>{{ app.student.skills }}</td>
+
+                    <td>
+                        <a href="{{ app.student.resume_link }}" target="_blank" class="btn btn-sm btn-primary">
+                            View Resume
+                        </a>
+                    </td>
+
+                    <td>
+                        {{ app.applied_at.strftime('%d %b %Y %I:%M %p') }}
+                    </td>
+
+                    <td>
+                        <span class="badge 
+                        {% if app.status == 'Applied' %} bg-warning
+                        {% elif app.status == 'Shortlisted' %} bg-success
+                        {% elif app.status == 'Rejected' %} bg-danger
+                        {% elif app.status == 'Selected' %} bg-primary
+                        {% endif %}">
+                        {{ app.status }}
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <a href="/update_application_status/{{ app.id }}/Shortlisted"
+                           class="btn btn-sm btn-success">
+                           Shortlist
+                        </a>
+
+                        <a href="/update_application_status/{{ app.id }}/Selected"
+                           class="btn btn-sm btn-primary">
+                           Select
+                        </a>
+
+                        <a href="/update_application_status/{{ app.id }}/Rejected"
+                           class="btn btn-sm btn-danger">
+                           Reject
+                        </a>
+
+                    </td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

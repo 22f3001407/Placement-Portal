@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4" style="max-width:1100px;">
+
+    <!-- ===== WELCOME CARD ===== -->
+    <div class="card shadow-sm border-0 p-4 text-center mb-4">
+        <h2 class="fw-bold">Welcome {{ user.name }}</h2>
+        <p class="text-muted">Placement Portal Student Dashboard</p>
+        <hr>
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+
+    <!-- ===== STUDENT DETAILS ===== -->
+    <div class="card shadow-sm border-0 p-4 mb-4">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="fw-bold mb-0">Student Details</h4>
+
+            <a href="/edit_profile" class="btn btn-sm btn-primary">
+                ✏ Edit Profile
+            </a>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-2">
+                <strong>Name:</strong> {{ student.name }}
+            </div>
+
+            <div class="col-md-6 mb-2">
+                <strong>College:</strong> {{ student.college_name }}
+            </div>
+
+            <div class="col-md-6 mb-2">
+                <strong>Branch:</strong> {{ student.branch }}
+            </div>
+
+            <div class="col-md-6 mb-2">
+                <strong>CGPA:</strong> {{ student.cgpa }}
+            </div>
+
+            <div class="col-md-6 mb-2">
+                <strong>Skills:</strong> {{ student.skills }}
+            </div>
+
+            <div class="col-md-6 mb-2">
+                <strong>Resume:</strong>
+                {% if student and student.resume_link %}
+                    <a href="{{ student.resume_link }}"
+                       target="_blank"
+                       class="btn btn-sm btn-outline-primary">
+                        View Resume
+                    </a>
+                {% else %}
+                    <span class="text-muted">Not Uploaded</span>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== STATS ===== -->
+    <div class="row g-3 mb-4 text-center">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-3">
+                <h5>Applied Jobs</h5>
+                <h3 class="fw-bold">{{ applied_jobs }}</h3>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-3">
+                <h5>Shortlisted</h5>
+                <h3 class="fw-bold">{{ shortlisted }}</h3>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-3">
+                <h5>Placed</h5>
+                <h3 class="fw-bold">{{ placed }}</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== ACTION BUTTONS ===== -->
+    <div class="row g-3 mb-5 text-center">
+
+        <div class="col-md-6">
+            <a href="/available_jobs" class="btn btn-dark w-100">
+                Available Jobs
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="/my_applications" class="btn btn-success w-100">
+                My Applications
+            </a>
+        </div>
+
+
+{% endblock %}

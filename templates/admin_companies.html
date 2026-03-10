@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5" style="max-width:1100px;">
+
+    <div class="card shadow-sm border-0 p-4 rounded-4">
+
+
+        <h3 class="fw-bold mb-3">All Companies</h3>
+
+        <form method="GET" action="/admin_companies" class="mb-3">
+            <input type="text"
+                    name="query"
+                    placeholder="Search company by name..."
+                    class="form-control">
+        </form>
+        
+        <table class="table table-hover">
+
+            <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Industry</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+            {% for c in companies %}
+            <tr>
+
+                <td>{{ c.company_name }}</td>
+                <td>{{ c.industry }}</td>
+                <td>{{ c.location }}</td>
+
+                <td>
+                    {% if c.is_blacklisted %}
+                        <span class="badge bg-danger">Blacklisted</span>
+                    {% else %}
+                        <span class="badge bg-success">Active</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    <a href="/toggle_blacklist_company/{{ c.id }}"
+                       class="btn btn-sm {% if c.is_blacklisted %}btn-success{% else %}btn-danger{% endif %}">
+                       
+                        {% if c.is_blacklisted %}
+                            Unblacklist
+                        {% else %}
+                            Blacklist
+                        {% endif %}
+                    </a>
+                </td>
+
+            </tr>
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
