@@ -103,7 +103,7 @@ class Application(db.Model):
     job = db.relationship("Job",back_populates="applications")
 
 
-                #ROUTES
+                 #ROUTES
                 
 @app.route("/")
 def index():
@@ -137,7 +137,6 @@ def login():
         
         else:
             return redirect("/student_dashboard")
-        
     return render_template("login.html")
 
 
